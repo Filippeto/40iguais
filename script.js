@@ -11,6 +11,25 @@ document.querySelectorAll('.manifesto-copy p').forEach(p=>observer.observe(p));
 const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('in-view')}),{threshold:.28});
 document.querySelectorAll('.guga-legacy').forEach(section=>revealObserver.observe(section));
 document.querySelector('.ball').addEventListener('click',()=>document.querySelector('#manifesto').scrollIntoView({behavior:'smooth'}));
-const logoStage=document.querySelector('.logo-stage'),logo=logoStage.querySelector('img');let drag=false,start=0,offset=0;
-logoStage.addEventListener('pointerdown',e=>{drag=true;start=e.clientX-offset;logoStage.setPointerCapture(e.pointerId)});logoStage.addEventListener('pointermove',e=>{if(!drag)return;offset=Math.max(-180,Math.min(180,e.clientX-start));logo.style.transform=`translateX(${offset}px) rotate(${offset/30}deg)`});logoStage.addEventListener('pointerup',()=>drag=false);
+const logoStage=document.querySelector('.logo-stage'),logo=logoStage.querySelector('img'),logoCount=logoStage.querySelector('span b');
+const logoVariants=[
+  {src:'assets/svg/Logo-1.svg',alt:'Logotipo principal 40iguais'},
+  {src:'assets/svg/Alternative-Logo.svg',alt:'Logotipo alternativo 40iguais'},
+  {src:'assets/svg/Logo-Icon.svg',alt:'Símbolo circular 40iguais'}
+];
+let logoIndex=0,logoTimer;
+function cycleLogo(){
+  if(logoStage.classList.contains('is-changing'))return;
+  logoStage.classList.add('is-changing');
+  clearTimeout(logoTimer);
+  logoTimer=setTimeout(()=>{
+    logoIndex=(logoIndex+1)%logoVariants.length;
+    logo.src=logoVariants[logoIndex].src;
+    logo.alt=logoVariants[logoIndex].alt;
+    logoCount.textContent=String(logoIndex+1).padStart(2,'0');
+    logoStage.classList.remove('is-changing');
+  },180);
+}
+logoStage.addEventListener('click',cycleLogo);
+logoStage.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();cycleLogo()}});
 document.addEventListener('keydown',e=>{if(!['ArrowDown','ArrowUp',' ','PageDown','PageUp'].includes(e.key))return;e.preventDefault();const panels=[...document.querySelectorAll('.panel')];const y=scrollY+innerHeight*.45;let i=panels.findIndex(p=>p.offsetTop>y);if(e.key==='ArrowUp'||e.key==='PageUp')i=Math.max(0,(i<0?panels.length:i)-2);else i=i<0?panels.length-1:i;panels[i]?.scrollIntoView({behavior:'smooth'})});

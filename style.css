@@ -68,3 +68,12 @@
 .pixel-player i,.pixel-player b,.pixel-player:after{display:none}
 .player-one{left:6%}.player-two{right:6%}
 @media(max-width:800px){.pixel-player{width:4px;height:38px;transform:none}}
+
+/* Seletor das três assinaturas da marca */
+.logo-stage{cursor:none;outline:none}
+.logo-stage img{max-height:72%;object-fit:contain;transition:opacity .18s ease,transform .18s ease}
+.logo-stage.is-changing img{opacity:0;transform:scale(.91) rotate(-2deg)}
+.logo-stage span{display:flex;align-items:center;gap:2px;padding:9px 12px;border:1px solid rgba(1,1,1,.45);background:rgba(244,255,31,.75);font:700 9px DM;letter-spacing:.12em}
+.logo-stage span b{font:900 13px Carbona}
+.logo-stage:hover span{background:var(--black);color:var(--acid)}
+.logo-stage:focus-visible{box-shadow:inset 0 0 0 2px var(--black)}
