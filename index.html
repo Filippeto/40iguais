@@ -11,30 +11,21 @@
 <body>
   <div class="cursor" aria-hidden="true"></div>
   <header class="topbar">
-    <a class="brand" href="#inicio" aria-label="40iguais, voltar ao início"><img src="assets/svg/logo-header.svg" alt="Símbolo circular 40iguais" /></a>
+    <a class="brand" href="#inicio" aria-label="40iguais, voltar ao início"><img src="assets/svg/Logo-Icon.svg" alt="40iguais" /></a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="menu">índice <span>+</span></button>
     <nav id="menu" aria-label="Capítulos">
-      <a href="#manifesto">01 manifesto</a><a href="#identidade">02 identidade</a><a href="#editorial">03 editorial</a><a href="#guga">04 legado</a><a href="#matchpoint">05 match point</a>
+      <a href="#manifesto">01 manifesto</a><a href="#identidade">02 identidade</a><a href="#editorial">03 editorial</a><a href="#legado">04 legado</a><a href="#matchpoint">05 match point</a>
     </nav>
   </header>
 
   <main>
     <section class="hero panel" id="inicio" data-theme="dark">
-      <div class="game-intro" aria-label="Animação de uma partida de tênis em estilo Atari">
-        <div class="game-score"><span>PLAYER 1</span><strong>40&nbsp;&nbsp;40</strong><span>PLAYER 2</span></div>
-        <div class="pixel-court" aria-hidden="true">
-          <div class="court-net"></div><div class="court-service left"></div><div class="court-service right"></div>
-          <div class="pixel-player player-one"><i></i><b></b></div>
-          <div class="pixel-player player-two"><i></i><b></b></div>
-          <div class="pixel-ball"></div>
-          <div class="point-mark">VANTAGEM</div>
-        </div>
+      <div class="pong" aria-label="Partida minimalista em 40 a 40">
+        <div class="pong-score"><span>40</span><i>—</i><span>40</span></div>
+        <div class="pong-court"><i class="paddle left"></i><i class="paddle right"></i><b class="pong-ball"></b></div>
+        <strong class="advantage">vantagem</strong>
       </div>
-      <div class="hero-reveal">
-        <img src="assets/svg/Logo-Hero.svg" alt="40iguais" />
-        <p>O momento decisivo.</p>
-        <button class="ball" aria-label="Iniciar apresentação"><span>play</span></button>
-      </div>
+      <div class="hero-reveal"><img src="assets/svg/Logo-1.svg" alt="40iguais" /><p>O momento decisivo.</p><button class="ball" aria-label="Iniciar apresentação"><span>play</span></button></div>
       <div class="scroll-cue">role para entrar em quadra <b>↓</b></div>
     </section>
 
@@ -58,10 +49,7 @@
     <section class="identity panel" id="identidade" data-theme="acid">
       <div class="section-index">02 <span>identidade</span></div>
       <div class="identity-head"><h2>Jogo, tensão<br />e movimento.</h2><p>Uma linguagem visual construída no ponto de equilíbrio entre o rigor editorial e a energia imprevisível da quadra.</p></div>
-      <div class="logo-stage" role="button" tabindex="0" aria-label="Alternar entre as três versões do logotipo">
-        <img src="assets/svg/Logo-1.svg" alt="Logotipo principal 40iguais" />
-        <span><b>01</b> / 03&nbsp;&nbsp; clique</span>
-      </div>
+      <div class="logo-stage" role="button" tabindex="0" aria-label="Alternar entre as três versões do logo"><img src="assets/svg/Logo-1.svg" alt="Logotipo 40iguais" /><span>clique · 01/03</span></div>
       <div class="type-marquee" aria-label="Tipografia Carbona"><div>CARBONA · CARBONA · CARBONA · CARBONA ·&nbsp;</div></div>
       <div class="palette" aria-label="Paleta de cores">
         <button data-color="#010101" style="--c:#010101">preto</button><button data-color="#cc4319" style="--c:#cc4319">saibro</button><button data-color="#f4ff1f" style="--c:#f4ff1f">bola</button><button data-color="#14467e" style="--c:#14467e">quadra</button><button data-color="#fffeee" style="--c:#fffeee">linha</button>
@@ -79,19 +67,13 @@
       </div>
     </section>
 
-    <section class="guga-legacy panel" id="guga" data-theme="clay">
+    <section class="legacy panel" id="legado" data-theme="clay">
       <div class="section-index">04 <span>legado</span></div>
-      <div class="guga-copy">
-        <p class="eyebrow">O poder de um ídolo</p>
-        <h2>O poder<br />de um <em>ídolo.</em></h2>
-        <p class="legacy-text">O que vemos hoje só é possível, pois um brasileiro, AKA Guga Kuerten, fez o que ninguém imagina ser possível. O Brasil será eternamente grato por sua determinação, leveza e espírito esportivo. <strong>Valeu, Guga.</strong></p>
+      <div class="legacy-grid">
+        <div class="legacy-copy"><p>Ídolos atravessam gerações.</p><h2>O poder de<br />um <em>ídolo.</em></h2><div class="legacy-text">Antes de uma nova geração fazer o Brasil sonhar com o tênis, Guga mostrou até onde era possível chegar. Com talento, leveza e espírito esportivo, transformou conquistas individuais em um legado coletivo e abriu caminho para tudo o que vemos hoje. <strong>Valeu, Guga.</strong></div></div>
+        <div class="guga-reveal"><img src="assets/images/guga-frame.png" alt="Guga Kuerten retratado em uma moldura dourada" /></div>
       </div>
-      <div class="guga-reveal">
-        <span class="reveal-number">01</span>
-        <img src="assets/images/guga-bgless.png" alt="Guga Kuerten retratado em uma moldura dourada" />
-        <span class="reveal-caption">Roland Garros<br />1997 · 2000 · 2001</span>
-      </div>
-      <div class="legacy-line" aria-hidden="true"><span>determinação</span><span>leveza</span><span>espírito esportivo</span></div>
+      <div class="legacy-band"><span>determinação</span><span>leveza</span><span>espírito esportivo</span></div>
     </section>
 
     <section class="matchpoint panel" id="matchpoint" data-theme="offwhite">
