@@ -14,7 +14,29 @@ export const post=defineType({
   defineField({name:'summary',title:'Resumo / subtítulo',type:'text',rows:3,group:'content',validation:r=>r.required().max(300)}),
   defineField({name:'kicker',title:'Chamada curta',type:'string',group:'content'}),
   defineField({name:'cover',title:'Imagem de capa',type:'image',options:{hotspot:true},fields:imageFields,group:'content',validation:r=>r.required().assetRequired()}),
-  defineField({name:'body',title:'Texto da matéria',type:'array',group:'content',of:[{type:'block',styles:[{title:'Parágrafo',value:'normal'},{title:'Subtítulo',value:'h2'},{title:'Intertítulo',value:'h3'},{title:'Citação',value:'blockquote'}],lists:[{title:'Marcadores',value:'bullet'},{title:'Numerada',value:'number'}],marks:{decorators:[{title:'Negrito',value:'strong'},{title:'Itálico',value:'em'}],annotations:[{name:'link',type:'object',title:'Link',fields:[{name:'href',type:'url',title:'Endereço',validation:r=>r.uri({scheme:['http','https']})}]}]} ,{type:'image',options:{hotspot:true},fields:imageFields}],validation:r=>r.required().min(1)}),
+    defineField({
+    name: 'body',
+    title: 'Texto da matéria',
+    type: 'array',
+    group: 'content',
+    of: [
+      {
+        type: 'block',
+        styles: [
+          {title: 'Parágrafo', value: 'normal'},
+          {title: 'Subtítulo', value: 'h2'},
+          {title: 'Intertítulo', value: 'h3'},
+          {title: 'Citação', value: 'blockquote'}
+        ]
+      },
+      {
+        type: 'image',
+        options: {hotspot: true},
+        fields: imageFields
+      }
+    ],
+    validation: r => r.required().min(1)
+  }),
   defineField({name:'take',title:'Leitura do 40iguais',description:'Seu contexto ou comentário editorial. Opcional.',type:'text',rows:4,group:'content'}),
   defineField({name:'category',title:'Categoria',type:'string',group:'organization',options:{list:[{title:'ATP',value:'ATP'},{title:'WTA',value:'WTA'},{title:'Duplas',value:'Duplas'},{title:'Além da quadra',value:'Cultura'}]},validation:r=>r.required()}),
   defineField({name:'players',title:'Tenistas',type:'array',of:[{type:'string'}],options:{layout:'tags'},group:'organization'}),
