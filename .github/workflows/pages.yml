@@ -28,7 +28,7 @@ jobs:
         run: node --test cms.test.mjs
       - name: Instalar painel
         working-directory: noticias/studio
-        run: npm ci --no-audit --no-fund
+        run: npm install --package-lock=false --no-audit --no-fund
       - name: Compilar painel
         working-directory: noticias/studio
         run: npm run build
