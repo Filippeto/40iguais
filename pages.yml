@@ -1,0 +1,71 @@
+name: Publicar 40iguais
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  repository_dispatch:
+    types: [sanity-publish]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Testar integração editorial
+        working-directory: noticias
+        run: node --test cms.test.mjs
+      - name: Instalar painel
+        working-directory: noticias/studio
+        run: npm ci --no-audit --no-fund
+      - name: Compilar painel
+        working-directory: noticias/studio
+        run: npm run build
+      - name: Buscar conteúdo e gerar portal
+        working-directory: noticias
+        run: node build.mjs
+      - name: Reunir site, painel e apresentação
+        working-directory: noticias
+        run: node assemble.mjs
+      - name: Verificar páginas e arquivos
+        working-directory: noticias
+        run: node check.mjs
+      - name: Guardar prévia para revisão
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: 40iguais-preview
+          path: noticias/dist
+      - name: Preparar GitHub Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+      - name: Enviar site para publicação
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: noticias/dist
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar
+        id: deployment
+        uses: actions/deploy-pages@v4
